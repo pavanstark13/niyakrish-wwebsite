@@ -31,10 +31,33 @@ export default function ContactPage() {
     message: "",
   });
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setLoading(true);
+    setError("");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+      if (!res.ok) {
+        const data = await res.json();
+        throw new Error(data.error || "Failed to send message");
+      }
+      setSubmitted(true);
+    } catch (err) {
+      setError(
+        err instanceof Error
+          ? err.message
+          : "Something went wrong. Please call us directly at +91 90719 57777."
+      );
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleChange = (
@@ -68,6 +91,21 @@ export default function ContactPage() {
           </p>
         </div>
       </section>
+
+      {/* Google Maps placeholder — replace src with your actual embed URL from Google Maps */}
+      <div className="w-full h-64 bg-stone-800 relative overflow-hidden">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15226.329!2d78.4867!3d17.3850!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTfCsDIzJzA2LjAiTiA3OMKwMjknMTIuMiJF!5e0!3m2!1sen!2sin!4v1234567890"
+          width="100%"
+          height="100%"
+          style={{ border: 0, filter: "grayscale(1) contrast(1.1)" }}
+          allowFullScreen
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+          title="NIYAKRISH INDUSTRIES location"
+        />
+        <div className="absolute inset-0 bg-stone-900/20 pointer-events-none" />
+      </div>
 
       {/* Contact Content */}
       <section className="py-20 bg-stone-50">
@@ -331,15 +369,31 @@ export default function ContactPage() {
                     />
                   </div>
 
+                  {error && (
+                    <div className="px-4 py-3 bg-red-50 border border-red-200 rounded-sm">
+                      <p className="text-sm text-red-700">{error}</p>
+                    </div>
+                  )}
+
                   <button
                     type="submit"
-                    className="group w-full flex items-center justify-center gap-2 px-8 py-4 bg-stone-900 text-white font-bold text-sm rounded-sm hover:bg-amber-600 transition-colors uppercase tracking-wider"
+                    disabled={loading}
+                    className="group w-full flex items-center justify-center gap-2 px-8 py-4 bg-stone-900 text-white font-bold text-sm rounded-sm hover:bg-amber-600 transition-colors uppercase tracking-wider disabled:opacity-60 disabled:cursor-not-allowed"
                   >
-                    Send Enquiry
-                    <Send
-                      size={14}
-                      className="group-hover:translate-x-1 transition-transform"
-                    />
+                    {loading ? (
+                      <>
+                        <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24" fill="none">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                        </svg>
+                        Sending...
+                      </>
+                    ) : (
+                      <>
+                        Send Enquiry
+                        <Send size={14} className="group-hover:translate-x-1 transition-transform" />
+                      </>
+                    )}
                   </button>
 
                   <p className="text-xs text-stone-400 text-center">
