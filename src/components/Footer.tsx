@@ -64,6 +64,7 @@ export default function Footer() {
               {[
                 { label: "About Us", href: "/about" },
                 { label: "Our Products", href: "/products" },
+                { label: "Materials Calculator", href: "/calculator" },
                 { label: "Contact Us", href: "/contact" },
                 { label: "Get a Quote", href: "/contact" },
               ].map((item) => (
