@@ -7,7 +7,7 @@ export default function WhatsAppButton() {
 
   return (
     <a
-      href="https://wa.me/91?text=Hi%20NIYA%2C%20I%27d%20like%20to%20enquire%20about%20your%20construction%20materials."
+      href="https://wa.me/919071957777?text=Hi%20NIYA%2C%20I%27d%20like%20to%20enquire%20about%20your%20construction%20materials."
       target="_blank"
       rel="noopener noreferrer"
       onMouseEnter={() => setHovered(true)}
