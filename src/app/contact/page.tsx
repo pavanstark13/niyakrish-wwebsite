@@ -1,0 +1,354 @@
+"use client";
+
+import { useState } from "react";
+import {
+  Phone,
+  Mail,
+  MapPin,
+  Send,
+  Clock,
+  Layers,
+  Box,
+  Mountain,
+  CheckCircle2,
+} from "lucide-react";
+
+const productInterests = [
+  { id: "rmc", icon: Layers, label: "Ready Mix Concrete" },
+  { id: "blocks", icon: Box, label: "Concrete Solid Blocks" },
+  { id: "aggregates", icon: Mountain, label: "Aggregates" },
+  { id: "all", icon: CheckCircle2, label: "All Products" },
+];
+
+export default function ContactPage() {
+  const [formData, setFormData] = useState({
+    name: "",
+    company: "",
+    email: "",
+    phone: "",
+    product: "",
+    quantity: "",
+    message: "",
+  });
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setSubmitted(true);
+  };
+
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  return (
+    <>
+      {/* Header */}
+      <section className="pt-32 pb-16 bg-stone-900 relative overflow-hidden">
+        <div
+          className="absolute inset-0 opacity-5"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+          }}
+        />
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <p className="text-xs font-bold tracking-widest uppercase text-amber-400 mb-3">
+            Get In Touch
+          </p>
+          <h1 className="text-4xl lg:text-6xl font-black text-white mb-4">
+            Contact Us
+          </h1>
+          <p className="text-stone-400 max-w-xl mx-auto text-base leading-relaxed">
+            Ready to discuss your project requirements? Our team is here to help
+            you find the right solution.
+          </p>
+        </div>
+      </section>
+
+      {/* Contact Content */}
+      <section className="py-20 bg-stone-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+            {/* Contact Info */}
+            <div className="space-y-6">
+              <div>
+                <h2 className="text-xl font-black text-stone-900 mb-2">
+                  NIYAKRISH INDUSTRIES
+                  <br />
+                  PVT LTD.
+                </h2>
+                <p className="text-stone-500 text-sm leading-relaxed">
+                  Reach out to us for product enquiries, bulk orders, or to
+                  schedule a site consultation.
+                </p>
+              </div>
+
+              <div className="space-y-4">
+                <div className="flex items-start gap-4 p-4 bg-white rounded-sm border border-stone-200">
+                  <div className="w-10 h-10 bg-stone-900 rounded-sm flex items-center justify-center flex-shrink-0">
+                    <MapPin size={16} className="text-amber-400" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-bold text-stone-900 mb-1">
+                      Location
+                    </p>
+                    <p className="text-sm text-stone-500 leading-relaxed">
+                      India
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4 p-4 bg-white rounded-sm border border-stone-200">
+                  <div className="w-10 h-10 bg-stone-900 rounded-sm flex items-center justify-center flex-shrink-0">
+                    <Mail size={16} className="text-amber-400" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-bold text-stone-900 mb-1">
+                      Email
+                    </p>
+                    <a
+                      href="mailto:info@niyakrish.com"
+                      className="text-sm text-amber-600 hover:text-amber-700"
+                    >
+                      info@niyakrish.com
+                    </a>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4 p-4 bg-white rounded-sm border border-stone-200">
+                  <div className="w-10 h-10 bg-stone-900 rounded-sm flex items-center justify-center flex-shrink-0">
+                    <Phone size={16} className="text-amber-400" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-bold text-stone-900 mb-1">
+                      Phone
+                    </p>
+                    <p className="text-sm text-stone-500">
+                      Contact via form below
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4 p-4 bg-white rounded-sm border border-stone-200">
+                  <div className="w-10 h-10 bg-stone-900 rounded-sm flex items-center justify-center flex-shrink-0">
+                    <Clock size={16} className="text-amber-400" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-bold text-stone-900 mb-1">
+                      Business Hours
+                    </p>
+                    <p className="text-sm text-stone-500">
+                      Mon – Sat: 8:00 AM – 6:00 PM
+                    </p>
+                    <p className="text-sm text-stone-500">Sunday: Closed</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Products quick reference */}
+              <div className="bg-amber-50 border border-amber-200 rounded-sm p-5">
+                <p className="text-xs font-bold uppercase tracking-widest text-amber-700 mb-3">
+                  Our Products
+                </p>
+                <div className="space-y-2">
+                  {productInterests.slice(0, 3).map((p) => {
+                    const Icon = p.icon;
+                    return (
+                      <div
+                        key={p.id}
+                        className="flex items-center gap-2 text-sm text-stone-700"
+                      >
+                        <Icon size={13} className="text-amber-600" />
+                        {p.label}
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+
+            {/* Form */}
+            <div className="lg:col-span-2">
+              {submitted ? (
+                <div className="bg-white border border-stone-200 rounded-sm p-12 text-center">
+                  <div className="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <CheckCircle2 size={32} className="text-amber-600" />
+                  </div>
+                  <h3 className="text-2xl font-black text-stone-900 mb-3">
+                    Message Sent!
+                  </h3>
+                  <p className="text-stone-500 leading-relaxed mb-6">
+                    Thank you for reaching out. Our team will get back to you
+                    within 24 business hours.
+                  </p>
+                  <button
+                    onClick={() => {
+                      setSubmitted(false);
+                      setFormData({
+                        name: "",
+                        company: "",
+                        email: "",
+                        phone: "",
+                        product: "",
+                        quantity: "",
+                        message: "",
+                      });
+                    }}
+                    className="px-6 py-3 bg-stone-900 text-white font-bold text-sm rounded-sm hover:bg-amber-600 transition-colors"
+                  >
+                    Send Another Message
+                  </button>
+                </div>
+              ) : (
+                <form
+                  onSubmit={handleSubmit}
+                  className="bg-white border border-stone-200 rounded-sm p-8 space-y-6"
+                >
+                  <div>
+                    <h2 className="text-xl font-black text-stone-900 mb-1">
+                      Get a Free Quote
+                    </h2>
+                    <p className="text-stone-500 text-sm">
+                      Fill in the details below and we&apos;ll respond within
+                      24 hours.
+                    </p>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-xs font-bold uppercase tracking-widest text-stone-700 mb-2">
+                        Full Name *
+                      </label>
+                      <input
+                        type="text"
+                        name="name"
+                        required
+                        value={formData.name}
+                        onChange={handleChange}
+                        placeholder="Your full name"
+                        className="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-sm text-sm text-stone-900 placeholder-stone-400 focus:outline-none focus:border-amber-400 focus:bg-white transition-colors"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-bold uppercase tracking-widest text-stone-700 mb-2">
+                        Company / Organization
+                      </label>
+                      <input
+                        type="text"
+                        name="company"
+                        value={formData.company}
+                        onChange={handleChange}
+                        placeholder="Your company name"
+                        className="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-sm text-sm text-stone-900 placeholder-stone-400 focus:outline-none focus:border-amber-400 focus:bg-white transition-colors"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-xs font-bold uppercase tracking-widest text-stone-700 mb-2">
+                        Email Address *
+                      </label>
+                      <input
+                        type="email"
+                        name="email"
+                        required
+                        value={formData.email}
+                        onChange={handleChange}
+                        placeholder="you@example.com"
+                        className="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-sm text-sm text-stone-900 placeholder-stone-400 focus:outline-none focus:border-amber-400 focus:bg-white transition-colors"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-bold uppercase tracking-widest text-stone-700 mb-2">
+                        Phone Number *
+                      </label>
+                      <input
+                        type="tel"
+                        name="phone"
+                        required
+                        value={formData.phone}
+                        onChange={handleChange}
+                        placeholder="+91 XXXXX XXXXX"
+                        className="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-sm text-sm text-stone-900 placeholder-stone-400 focus:outline-none focus:border-amber-400 focus:bg-white transition-colors"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-xs font-bold uppercase tracking-widest text-stone-700 mb-2">
+                        Product Required *
+                      </label>
+                      <select
+                        name="product"
+                        required
+                        value={formData.product}
+                        onChange={handleChange}
+                        className="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-sm text-sm text-stone-900 focus:outline-none focus:border-amber-400 focus:bg-white transition-colors"
+                      >
+                        <option value="">Select a product</option>
+                        <option value="rmc">Ready Mix Concrete</option>
+                        <option value="blocks">Concrete Solid Blocks</option>
+                        <option value="aggregates">Aggregates</option>
+                        <option value="multiple">Multiple Products</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label className="block text-xs font-bold uppercase tracking-widest text-stone-700 mb-2">
+                        Estimated Quantity
+                      </label>
+                      <input
+                        type="text"
+                        name="quantity"
+                        value={formData.quantity}
+                        onChange={handleChange}
+                        placeholder="e.g. 50 cubic meters"
+                        className="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-sm text-sm text-stone-900 placeholder-stone-400 focus:outline-none focus:border-amber-400 focus:bg-white transition-colors"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-bold uppercase tracking-widest text-stone-700 mb-2">
+                      Project Details / Message *
+                    </label>
+                    <textarea
+                      name="message"
+                      required
+                      rows={5}
+                      value={formData.message}
+                      onChange={handleChange}
+                      placeholder="Describe your project, site location, delivery requirements, and any specific grade or size requirements..."
+                      className="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-sm text-sm text-stone-900 placeholder-stone-400 focus:outline-none focus:border-amber-400 focus:bg-white transition-colors resize-none"
+                    />
+                  </div>
+
+                  <button
+                    type="submit"
+                    className="group w-full flex items-center justify-center gap-2 px-8 py-4 bg-stone-900 text-white font-bold text-sm rounded-sm hover:bg-amber-600 transition-colors uppercase tracking-wider"
+                  >
+                    Send Enquiry
+                    <Send
+                      size={14}
+                      className="group-hover:translate-x-1 transition-transform"
+                    />
+                  </button>
+
+                  <p className="text-xs text-stone-400 text-center">
+                    By submitting this form, you agree to be contacted by NIYA /
+                    NIYAKRISH INDUSTRIES PVT LTD. regarding your enquiry.
+                  </p>
+                </form>
+              )}
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
