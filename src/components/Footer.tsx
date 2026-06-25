@@ -64,6 +64,7 @@ export default function Footer() {
               {[
                 { label: "About Us", href: "/about" },
                 { label: "Our Products", href: "/products" },
+                { label: "Materials Calculator", href: "/calculator" },
                 { label: "Contact Us", href: "/contact" },
                 { label: "Get a Quote", href: "/contact" },
               ].map((item) => (
@@ -101,19 +102,19 @@ export default function Footer() {
               <li className="flex items-center gap-3">
                 <Phone size={16} className="text-amber-500 flex-shrink-0" />
                 <a
-                  href="tel:+91"
+                  href="tel:+919071957777"
                   className="text-sm text-stone-400 hover:text-amber-400 transition-colors"
                 >
-                  Contact via form
+                  +91 90719 57777
                 </a>
               </li>
               <li className="flex items-center gap-3">
                 <Mail size={16} className="text-amber-500 flex-shrink-0" />
                 <a
-                  href="mailto:info@niyakrish.com"
+                  href="mailto:niyakrishindustries@gmail.com"
                   className="text-sm text-stone-400 hover:text-amber-400 transition-colors"
                 >
-                  info@niyakrish.com
+                  niyakrishindustries@gmail.com
                 </a>
               </li>
             </ul>

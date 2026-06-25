@@ -111,10 +111,10 @@ export default function ContactPage() {
                       Email
                     </p>
                     <a
-                      href="mailto:info@niyakrish.com"
-                      className="text-sm text-amber-600 hover:text-amber-700"
+                      href="mailto:niyakrishindustries@gmail.com"
+                      className="text-sm text-amber-600 hover:text-amber-700 break-all"
                     >
-                      info@niyakrish.com
+                      niyakrishindustries@gmail.com
                     </a>
                   </div>
                 </div>
@@ -125,11 +125,14 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <p className="text-sm font-bold text-stone-900 mb-1">
-                      Phone
+                      Phone / WhatsApp
                     </p>
-                    <p className="text-sm text-stone-500">
-                      Contact via form below
-                    </p>
+                    <a
+                      href="tel:+919071957777"
+                      className="text-sm text-amber-600 hover:text-amber-700 block"
+                    >
+                      +91 90719 57777
+                    </a>
                   </div>
                 </div>
 
