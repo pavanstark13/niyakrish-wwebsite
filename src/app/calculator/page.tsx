@@ -12,8 +12,6 @@ import {
   Info,
   CheckCircle2,
   ChevronDown,
-  Truck,
-  IndianRupee,
   Printer,
   MessageCircle,
   Building2,
@@ -43,9 +41,6 @@ interface Results {
   aggregates: number | null;
   grade: string;
   notes: string[];
-  mixers: number | null;
-  costMin: number | null;
-  costMax: number | null;
 }
 
 // Conversion constants
@@ -74,23 +69,12 @@ const gradeRecommendations: Record<ProjectType, string> = {
   custom: "M20",
 };
 
-// Approximate price per m³ in Bangalore (₹) — contact NIYA for exact quote
-const gradeCosts: Record<string, [number, number]> = {
-  M10: [3200, 3800], M15: [3800, 4400], M20: [4400, 5000],
-  M25: [4900, 5600], M30: [5400, 6200], M35: [5900, 6800],
-  M40: [6400, 7400], M45: [6900, 8000], M50: [7500, 9000],
-  M55: [8200, 10000], M60: [9000, 12000],
-};
-
 function calculate(type: ProjectType, inputs: Inputs): Results {
   const notes: string[] = [];
   const WASTAGE = 1.05;
   let rmc: number | null = null;
   let blocks: number | null = null;
   let aggregates: number | null = null;
-  let mixers: number | null = null;
-  let costMin: number | null = null;
-  let costMax: number | null = null;
   const grade = inputs.grade || gradeRecommendations[type];
 
   if (type === "slab") {
@@ -172,20 +156,7 @@ function calculate(type: ProjectType, inputs: Inputs): Results {
     }
   }
 
-  // Transit mixers (1 mixer = 6 m³ capacity)
-  if (rmc !== null && rmc > 0) {
-    mixers = Math.ceil(rmc / 6);
-  }
-
-  // Cost estimate for RMC
-  const gradeForCost = inputs.grade || grade.split(" – ")[0];
-  const costs = gradeCosts[gradeForCost];
-  if (costs && rmc !== null && rmc > 0) {
-    costMin = Math.round((rmc * costs[0]) / 100) * 100;
-    costMax = Math.round((rmc * costs[1]) / 100) * 100;
-  }
-
-  return { rmc, blocks, aggregates, grade, notes, mixers, costMin, costMax };
+  return { rmc, blocks, aggregates, grade, notes };
 }
 
 function buildWhatsAppMessage(type: ProjectType, inputs: Inputs, results: Results): string {
@@ -504,34 +475,6 @@ export default function CalculatorPage() {
                 )}
               </div>
 
-              {/* Extra insights */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
-                {results.mixers !== null && (
-                  <div className="bg-stone-800 border border-stone-700 rounded-sm p-4 flex items-center gap-4">
-                    <div className="w-10 h-10 bg-stone-700 rounded-sm flex items-center justify-center flex-shrink-0">
-                      <Truck size={18} className="text-amber-400" />
-                    </div>
-                    <div>
-                      <p className="text-white font-black text-xl">{results.mixers}</p>
-                      <p className="text-stone-400 text-xs">Transit mixer{results.mixers > 1 ? "s" : ""} needed <span className="text-stone-600">(6 m³ each)</span></p>
-                    </div>
-                  </div>
-                )}
-                {results.costMin !== null && results.costMax !== null && (
-                  <div className="bg-stone-800 border border-stone-700 rounded-sm p-4 flex items-center gap-4">
-                    <div className="w-10 h-10 bg-stone-700 rounded-sm flex items-center justify-center flex-shrink-0">
-                      <IndianRupee size={18} className="text-amber-400" />
-                    </div>
-                    <div>
-                      <p className="text-white font-black text-sm">
-                        ₹{results.costMin.toLocaleString("en-IN")} – ₹{results.costMax.toLocaleString("en-IN")}
-                      </p>
-                      <p className="text-stone-400 text-xs">Approx. RMC cost <span className="text-stone-600">(Bangalore rate)</span></p>
-                    </div>
-                  </div>
-                )}
-              </div>
-
               {/* Notes */}
               {results.notes.length > 0 && (
                 <div className="bg-stone-800 rounded-sm p-4 mb-6">
@@ -567,7 +510,7 @@ export default function CalculatorPage() {
           <div className="mt-6 bg-amber-50 border border-amber-200 rounded-sm p-5">
             <p className="text-xs font-bold uppercase tracking-widest text-amber-700 mb-2">Disclaimer</p>
             <p className="text-xs text-stone-500 leading-relaxed">
-              Estimates are based on standard IS formulas with 5% wastage. Cost ranges are indicative Bangalore market rates — actual pricing depends on volume, location, and mix design. Consult our engineers for final specifications. NIYA team is available 24/7 — call +91 90719 57777.
+              Estimates are based on standard IS formulas with 5% wastage. Actual requirements may vary based on site conditions, mix design, and structural specifications. Consult our engineers for final quantities. NIYA team is available 24/7 — call +91 90719 57777.
             </p>
           </div>
         </div>
