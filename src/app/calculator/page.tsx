@@ -27,6 +27,8 @@ interface Inputs {
   wallHeight: string;
   wallLength: string;
   wallType: "single" | "double";
+  blockSize: "4" | "6" | "8";
+  openings: string;
   colWidth: string;
   colDepth: string;
   colHeight: string;
@@ -39,6 +41,9 @@ interface Results {
   rmc: number | null;
   blocks: number | null;
   aggregates: number | null;
+  cement: number | null;   // 50 kg bags
+  sand: number | null;     // metric tonnes
+  blockSizeLabel: string;
   grade: string;
   notes: string[];
 }
@@ -75,6 +80,9 @@ function calculate(type: ProjectType, inputs: Inputs): Results {
   let rmc: number | null = null;
   let blocks: number | null = null;
   let aggregates: number | null = null;
+  let cement: number | null = null;
+  let sand: number | null = null;
+  let blockSizeLabel = "";
   const grade = inputs.grade || gradeRecommendations[type];
 
   if (type === "slab") {
@@ -93,15 +101,34 @@ function calculate(type: ProjectType, inputs: Inputs): Results {
   } else if (type === "wall") {
     const L = parseFloat(inputs.wallLength);
     const H = parseFloat(inputs.wallHeight);
+    const openingsSqft = parseFloat(inputs.openings) || 0;
+    const bSize = inputs.blockSize || "8";
+    const thicknessMm = bSize === "4" ? 100 : bSize === "6" ? 150 : 200;
+    blockSizeLabel = bSize === "4" ? '4" (100mm)' : bSize === "6" ? '6" (150mm)' : '8" (200mm)';
+
     if (L > 0 && H > 0) {
-      const areaSqft = L * H;
-      const areaM2 = areaSqft * SQFT_TO_M2;
-      const blocksPerM2 = inputs.wallType === "double" ? 25 : 12.5;
+      const grossSqft = L * H;
+      const netSqft = Math.max(0, grossSqft - openingsSqft);
+      const areaM2 = netSqft * SQFT_TO_M2;
+      const isDouble = inputs.wallType === "double";
+      const blocksPerM2 = isDouble ? 25 : 12.5;
       blocks = Math.ceil(areaM2 * blocksPerM2 * WASTAGE);
-      notes.push(`Wall area: ${areaSqft.toFixed(0)} sq.ft`);
-      notes.push(inputs.wallType === "double" ? "Double leaf (400mm thick)" : "Single leaf (200mm thick)");
-      notes.push("Standard 400×200×200mm NIYA blocks");
-      notes.push("Includes 5% wastage");
+
+      // Mortar estimate — 1:6 cement:sand, dry factor 1.33
+      // Joint mortar ≈ 7.1% of wall volume (10mm joints on 400×200mm face)
+      const wallVolM3 = areaM2 * (thicknessMm / 1000) * (isDouble ? 2 : 1);
+      const mortarWet = wallVolM3 * 0.071;
+      const mortarDry = mortarWet * 1.33;
+      cement = Math.ceil(mortarDry / 7 * 1440 / 50);       // 50 kg bags
+      sand = Math.ceil(mortarDry * 6 / 7 * 1600 / 100) / 10; // MT
+
+      notes.push(`Gross wall area: ${grossSqft.toFixed(0)} sq.ft`);
+      if (openingsSqft > 0) notes.push(`Openings deducted: ${openingsSqft.toFixed(0)} sq.ft (doors/windows)`);
+      notes.push(`Net wall area: ${netSqft.toFixed(0)} sq.ft`);
+      notes.push(`Block size: NIYA ${blockSizeLabel} solid blocks`);
+      notes.push(isDouble ? "Double leaf wall" : "Single leaf wall");
+      notes.push("Mortar ratio: 1:6 (cement:sand)");
+      notes.push("Includes 5% wastage on blocks");
     }
   } else if (type === "foundation") {
     const L = parseFloat(inputs.length);
@@ -156,7 +183,7 @@ function calculate(type: ProjectType, inputs: Inputs): Results {
     }
   }
 
-  return { rmc, blocks, aggregates, grade, notes };
+  return { rmc, blocks, aggregates, cement, sand, blockSizeLabel, grade, notes };
 }
 
 function buildWhatsAppMessage(type: ProjectType, inputs: Inputs, results: Results): string {
@@ -170,7 +197,9 @@ function buildWhatsAppMessage(type: ProjectType, inputs: Inputs, results: Result
     `Requirements:`,
   ];
   if (results.rmc !== null) lines.push(`- Ready Mix Concrete: ${results.rmc} m³ (${results.grade})`);
-  if (results.blocks !== null) lines.push(`- Solid Blocks: ${results.blocks.toLocaleString()} pcs`);
+  if (results.blocks !== null) lines.push(`- Solid Blocks: ${results.blocks.toLocaleString()} pcs (${results.blockSizeLabel})`);
+  if (results.cement !== null) lines.push(`- Cement (mortar): ${results.cement} bags (50 kg)`);
+  if (results.sand !== null) lines.push(`- Sand (mortar): ${results.sand} MT`);
   if (results.aggregates !== null) lines.push(`- Aggregates: ${results.aggregates} MT`);
   lines.push(``, `Please provide a quote. Thank you!`);
   return encodeURIComponent(lines.join("\n"));
@@ -180,7 +209,7 @@ export default function CalculatorPage() {
   const [project, setProject] = useState<ProjectType>("slab");
   const [inputs, setInputs] = useState<Inputs>({
     length: "", width: "", height: "", thickness: "6",
-    wallHeight: "", wallLength: "", wallType: "single",
+    wallHeight: "", wallLength: "", wallType: "single", blockSize: "8", openings: "",
     colWidth: "9", colDepth: "9", colHeight: "", colCount: "1",
     volume: "", grade: "",
   });
@@ -198,7 +227,7 @@ export default function CalculatorPage() {
   const handleReset = () => {
     setInputs({
       length: "", width: "", height: "", thickness: "6",
-      wallHeight: "", wallLength: "", wallType: "single",
+      wallHeight: "", wallLength: "", wallType: "single", blockSize: "8", openings: "",
       colWidth: "9", colDepth: "9", colHeight: "", colCount: "1",
       volume: "", grade: "",
     });
@@ -278,8 +307,28 @@ export default function CalculatorPage() {
             )}
 
             {project === "wall" && (
-              <div className="space-y-4">
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <div className="space-y-5">
+                {/* Block size selector */}
+                <div>
+                  <label className={labelClass}>Block Size</label>
+                  <div className="grid grid-cols-3 gap-3">
+                    {([
+                      { val: "4", label: '4" Block', sub: "100mm thick", use: "Partition / non-load bearing" },
+                      { val: "6", label: '6" Block', sub: "150mm thick", use: "Internal load bearing" },
+                      { val: "8", label: '8" Block', sub: "200mm thick", use: "External / compound wall" },
+                    ] as const).map((b) => (
+                      <button key={b.val} onClick={() => handleInput("blockSize", b.val)}
+                        className={`p-3 rounded-sm border-2 text-left transition-all ${inputs.blockSize === b.val ? "border-amber-500 bg-amber-50" : "border-stone-200 bg-stone-50 hover:border-stone-300"}`}>
+                        <div className={`text-sm font-black ${inputs.blockSize === b.val ? "text-amber-700" : "text-stone-800"}`}>{b.label}</div>
+                        <div className={`text-xs font-semibold mt-0.5 ${inputs.blockSize === b.val ? "text-amber-600" : "text-stone-500"}`}>{b.sub}</div>
+                        <div className="text-xs text-stone-400 mt-1 hidden sm:block">{b.use}</div>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Dimensions */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className={labelClass}>Wall Length (ft)</label>
                     <input type="number" min="0" placeholder="e.g. 60" value={inputs.wallLength} onChange={(e) => handleInput("wallLength", e.target.value)} className={inputClass} />
@@ -288,19 +337,28 @@ export default function CalculatorPage() {
                     <label className={labelClass}>Wall Height (ft)</label>
                     <input type="number" min="0" placeholder="e.g. 10" value={inputs.wallHeight} onChange={(e) => handleInput("wallHeight", e.target.value)} className={inputClass} />
                   </div>
+                </div>
+
+                {/* Wall type + openings */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className={labelClass}>Wall Type</label>
                     <div className="relative">
                       <select value={inputs.wallType} onChange={(e) => handleInput("wallType", e.target.value as "single" | "double")} className={inputClass + " appearance-none pr-8"}>
-                        <option value="single">Single leaf (8 inch)</option>
-                        <option value="double">Double leaf (16 inch)</option>
+                        <option value="single">Single leaf (one block wide)</option>
+                        <option value="double">Double leaf (two blocks wide)</option>
                       </select>
                       <ChevronDown size={14} className="absolute right-3 top-1/2 -translate-y-1/2 text-stone-400 pointer-events-none" />
                     </div>
                   </div>
+                  <div>
+                    <label className={labelClass}>Openings Area (sq.ft) <span className="text-stone-400 normal-case font-normal">— optional</span></label>
+                    <input type="number" min="0" placeholder="e.g. 40 for 2 doors + 3 windows" value={inputs.openings} onChange={(e) => handleInput("openings", e.target.value)} className={inputClass} />
+                  </div>
                 </div>
+
                 <p className="text-xs text-stone-400 flex items-center gap-1">
-                  <Info size={12} /> Based on 400×200×200mm NIYA solid blocks with mortar joints
+                  <Info size={12} /> Results include blocks + cement bags + sand for mortar (1:6 mix). Openings = total area of doors &amp; windows to subtract.
                 </p>
               </div>
             )}
@@ -456,7 +514,9 @@ export default function CalculatorPage() {
                     <div className="text-4xl font-black text-white mb-1">{results.blocks.toLocaleString()}</div>
                     <div className="text-stone-400 text-sm">number of blocks</div>
                     <div className="mt-3 pt-3 border-t border-stone-700">
-                      <span className="text-xs text-stone-400">400×200×200mm NIYA blocks</span>
+                      <span className="text-xs text-stone-400">
+                        400×200×{results.blockSizeLabel ? results.blockSizeLabel.replace(/"/g, "").trim() : "200mm"} NIYA solid blocks
+                      </span>
                     </div>
                   </div>
                 )}
@@ -474,6 +534,38 @@ export default function CalculatorPage() {
                   </div>
                 )}
               </div>
+
+              {/* Mortar materials for block wall */}
+              {(results.cement !== null || results.sand !== null) && (
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+                  {results.cement !== null && (
+                    <div className="bg-stone-800 border border-stone-700 rounded-sm p-5">
+                      <div className="flex items-center gap-2 mb-3">
+                        <div className="w-4 h-4 rounded-sm bg-stone-500 flex-shrink-0" />
+                        <span className="text-stone-400 text-xs font-bold uppercase tracking-widest">Cement (for mortar)</span>
+                      </div>
+                      <div className="text-4xl font-black text-white mb-1">{results.cement}</div>
+                      <div className="text-stone-400 text-sm">bags of 50 kg</div>
+                      <div className="mt-3 pt-3 border-t border-stone-700">
+                        <span className="text-xs text-stone-400">1:6 cement:sand ratio for block laying</span>
+                      </div>
+                    </div>
+                  )}
+                  {results.sand !== null && (
+                    <div className="bg-stone-800 border border-stone-700 rounded-sm p-5">
+                      <div className="flex items-center gap-2 mb-3">
+                        <Mountain size={16} className="text-stone-400" />
+                        <span className="text-stone-400 text-xs font-bold uppercase tracking-widest">Sand (for mortar)</span>
+                      </div>
+                      <div className="text-4xl font-black text-white mb-1">{results.sand}</div>
+                      <div className="text-stone-400 text-sm">metric tonnes (MT)</div>
+                      <div className="mt-3 pt-3 border-t border-stone-700">
+                        <span className="text-xs text-stone-400">M-sand or river sand for block mortar</span>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
 
               {/* Notes */}
               {results.notes.length > 0 && (
