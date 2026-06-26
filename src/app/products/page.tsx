@@ -3,9 +3,9 @@ import { ArrowRight, CheckCircle2, Layers, Box, Mountain } from "lucide-react";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Products | NIYA — NIYAKRISH INDUSTRIES",
+  title: "Ready Mix Concrete, Solid Blocks & Aggregates Bangalore | NIYA Products",
   description:
-    "Explore NIYA's premium construction products: Ready Mix Concrete, Concrete Solid Blocks, and Aggregates.",
+    "NIYA by NIYAKRISH INDUSTRIES — Ready Mix Concrete (M10–M60), Concrete Solid Blocks, and Aggregates supplier in Bangalore, Mysore & Tumkur, Karnataka. IS certified quality.",
 };
 
 const products = [
@@ -114,8 +114,9 @@ export default function ProductsPage() {
             Our Products
           </h1>
           <p className="text-stone-400 max-w-xl mx-auto text-base leading-relaxed">
-            Premium construction materials manufactured to the highest
-            standards. Built for performance. Designed to last.
+            Premium construction materials manufactured to the highest IS
+            standards — supplied across Bangalore, Mysore &amp; Tumkur,
+            Karnataka.
           </p>
         </div>
       </section>
@@ -249,8 +250,8 @@ export default function ProductsPage() {
             Need Help Choosing the Right Product?
           </h2>
           <p className="text-stone-700 mb-8 text-base leading-relaxed">
-            Our engineers will assess your project requirements and recommend
-            the best product specifications.
+            Our engineers in Bangalore will assess your project requirements and
+            recommend the best product specifications for your site.
           </p>
           <Link
             href="/contact"

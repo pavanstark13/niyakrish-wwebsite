@@ -162,7 +162,7 @@ export default function Home() {
 
           <p className="text-base text-stone-400 max-w-xl mx-auto mb-12 leading-relaxed">
             Premium Ready Mix Concrete, Concrete Solid Blocks, and Aggregates —
-            the essential materials powering India&apos;s construction growth.
+            delivered across Bangalore, Mysore &amp; Tumkur, Karnataka.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -337,14 +337,15 @@ export default function Home() {
                 </h2>
                 <p className="text-stone-500 leading-relaxed mb-6 text-base">
                   NIYAKRISH INDUSTRIES PVT LTD. operates under the brand name
-                  NIYA — a promise of quality, consistency, and reliability in
-                  every batch of material we produce.
+                  NIYA — supplying premium construction materials across
+                  Bangalore, Mysore, and Tumkur with a promise of quality and
+                  reliability in every batch.
                 </p>
                 <p className="text-stone-500 leading-relaxed mb-8 text-base">
-                  Our state-of-the-art production facilities, experienced
-                  workforce, and strict quality control processes ensure that
-                  every product leaving our plant meets the highest industry
-                  standards.
+                  Our state-of-the-art production facilities in Karnataka,
+                  experienced workforce, and strict quality control processes
+                  ensure that every product leaving our plant meets the highest
+                  IS standards.
                 </p>
                 <Link
                   href="/about"
@@ -439,8 +440,8 @@ export default function Home() {
                 What Our Clients Say
               </h2>
               <p className="text-stone-500 max-w-xl mx-auto text-base">
-                Trusted by contractors, builders, and engineers across the
-                region.
+                Trusted by contractors, builders, and engineers across Bangalore,
+                Mysore &amp; Tumkur, Karnataka.
               </p>
             </div>
           </ScrollReveal>

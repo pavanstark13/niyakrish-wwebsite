@@ -11,9 +11,9 @@ import {
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "About Us | NIYA — NIYAKRISH INDUSTRIES",
+  title: "About NIYAKRISH INDUSTRIES | Ready Mix Concrete Manufacturer Bangalore",
   description:
-    "Learn about NIYAKRISH INDUSTRIES PVT LTD. — the company behind the NIYA brand of premium construction materials.",
+    "NIYAKRISH INDUSTRIES PVT LTD. — Manufacturer of Ready Mix Concrete, Solid Blocks & Aggregates in Bangalore, Karnataka. Learn our story, mission & values.",
 };
 
 const values = [
@@ -89,8 +89,8 @@ export default function AboutPage() {
             Who We Are
           </h1>
           <p className="text-stone-400 max-w-xl mx-auto text-base leading-relaxed">
-            The company behind India&apos;s most trusted construction material
-            brand.
+            Bangalore&apos;s trusted manufacturer of Ready Mix Concrete, Solid
+            Blocks &amp; Aggregates — serving Karnataka since our founding.
           </p>
         </div>
       </section>
@@ -110,7 +110,8 @@ export default function AboutPage() {
               </h2>
               <p className="text-stone-500 leading-relaxed mb-5 text-base">
                 NIYAKRISH INDUSTRIES PVT LTD. is a premier manufacturer of
-                construction materials, operating under the brand name{" "}
+                construction materials based in Bangalore, Karnataka, operating
+                under the brand name{" "}
                 <strong className="text-stone-800">NIYA</strong>. We specialize
                 in Ready Mix Concrete, Concrete Solid Blocks, and Aggregates —
                 the three fundamental materials that form the backbone of modern
@@ -118,16 +119,16 @@ export default function AboutPage() {
               </p>
               <p className="text-stone-500 leading-relaxed mb-5 text-base">
                 Our journey began with a simple but powerful vision: to deliver
-                construction materials of unwavering quality, reliably, and
-                efficiently. Today, that vision drives everything we do — from
-                how we source raw materials to how we manufacture and deliver
-                our products.
+                construction materials of unwavering quality to Bangalore,
+                Mysore, Tumkur, and the broader Karnataka region. Today, that
+                vision drives everything we do — from how we source raw
+                materials to how we manufacture and deliver our products.
               </p>
               <p className="text-stone-500 leading-relaxed text-base">
-                With modern production facilities, a skilled workforce, and an
-                uncompromising quality culture, NIYA has earned the trust of
-                contractors, builders, developers, and infrastructure companies
-                across the region.
+                With modern production facilities in Karnataka, a skilled
+                workforce, and an uncompromising quality culture, NIYA has
+                earned the trust of contractors, builders, developers, and
+                infrastructure companies across Bangalore and surrounding areas.
               </p>
             </div>
 
@@ -159,8 +160,8 @@ export default function AboutPage() {
                     </h3>
                     <p className="text-stone-700 text-sm leading-relaxed">
                       To be the most trusted construction material brand in
-                      India, recognized for quality, innovation, and sustainable
-                      manufacturing practices.
+                      Bangalore and Karnataka, recognized for quality,
+                      innovation, and sustainable manufacturing practices.
                     </p>
                   </div>
                 </div>
@@ -333,8 +334,9 @@ export default function AboutPage() {
             Want to Work with NIYA?
           </h2>
           <p className="text-stone-400 mb-8 text-base leading-relaxed">
-            Whether you&apos;re a contractor, developer, or builder — we&apos;d
-            love to be your trusted material supplier.
+            Whether you&apos;re a contractor, developer, or builder in Bangalore,
+            Mysore, or Tumkur — we&apos;d love to be your trusted material
+            supplier in Karnataka.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link

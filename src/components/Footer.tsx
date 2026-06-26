@@ -145,7 +145,9 @@ export default function Footer() {
                   className="text-amber-500 mt-0.5 flex-shrink-0"
                 />
                 <span className="text-sm text-stone-400 leading-relaxed">
-                  India
+                  Bangalore, Karnataka
+                  <br />
+                  Serving Mysore &amp; Tumkur
                 </span>
               </li>
               <li className="flex items-center gap-3">

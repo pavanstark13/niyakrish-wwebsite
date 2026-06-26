@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Materials Calculator | NIYA — NIYAKRISH INDUSTRIES",
+  title: "Concrete & Materials Calculator Bangalore | NIYA NIYAKRISH INDUSTRIES",
   description:
-    "Free construction materials calculator. Instantly estimate how much Ready Mix Concrete, Solid Blocks, or Aggregates your project needs.",
+    "Free construction materials calculator for Bangalore projects. Estimate Ready Mix Concrete (m³), Solid Blocks, or Aggregates for your Karnataka construction site.",
 };
 
 export default function CalculatorLayout({
