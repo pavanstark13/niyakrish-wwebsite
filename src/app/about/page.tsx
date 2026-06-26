@@ -45,28 +45,28 @@ const values = [
 
 const timeline = [
   {
-    year: "Founded",
-    title: "NIYAKRISH INDUSTRIES PVT LTD. established",
+    year: "~2010",
+    title: "Started in Aggregates",
     description:
-      "Founded with a vision to transform construction material supply in the region through quality and reliability.",
+      "NIYAKRISH INDUSTRIES began its journey in the aggregates business, supplying crushed stone and manufactured sand across Tumkur district and surrounding regions.",
   },
   {
     year: "Growth",
-    title: "Launched Ready Mix Concrete plant",
+    title: "Expanded to 4 VSI Crusher Plants",
     description:
-      "State-of-the-art batching plant commissioned, bringing precision-mixed concrete to construction sites.",
+      "Scaled the aggregates operations to four VSI (Vertical Shaft Impactor) crusher plants across different locations, establishing a strong regional supply network.",
   },
   {
-    year: "Expansion",
-    title: "Solid Blocks & Aggregates division added",
+    year: "2024",
+    title: "Launched Ready Mix Concrete & Block Manufacturing",
     description:
-      "Expanded product portfolio to serve the full spectrum of construction material needs.",
+      "Leveraging over a decade of materials expertise, we commissioned a state-of-the-art RMC batching plant and solid block manufacturing unit — bringing precision-mixed concrete and IS-certified blocks to construction sites.",
   },
   {
-    year: "Brand",
-    title: "NIYA brand introduced",
+    year: "Today",
+    title: "NIYA — A Complete Construction Materials Brand",
     description:
-      "Launched the NIYA brand identity to represent our commitment to premium quality across all products.",
+      "Operating from our corporate base in Huliyurdurga, Kunigal Taluk, we now serve contractors, developers, and builders across Bangalore, Mysore, Tumkur, and all of Karnataka under the NIYA brand.",
   },
 ];
 
@@ -89,8 +89,8 @@ export default function AboutPage() {
             Who We Are
           </h1>
           <p className="text-stone-400 max-w-xl mx-auto text-base leading-relaxed">
-            Bangalore&apos;s trusted manufacturer of Ready Mix Concrete, Solid
-            Blocks &amp; Aggregates — serving Karnataka since our founding.
+            15+ years in aggregates. 4 VSI Crusher plants. Now Karnataka&apos;s
+            trusted manufacturer of Ready Mix Concrete, Solid Blocks &amp; Aggregates.
           </p>
         </div>
       </section>
@@ -109,26 +109,29 @@ export default function AboutPage() {
                 PVT LTD.
               </h2>
               <p className="text-stone-500 leading-relaxed mb-5 text-base">
-                NIYAKRISH INDUSTRIES PVT LTD. is a premier manufacturer of
-                construction materials based in Bangalore, Karnataka, operating
-                under the brand name{" "}
+                NIYAKRISH INDUSTRIES PVT LTD. is a manufacturer of construction
+                materials headquartered in{" "}
+                <strong className="text-stone-800">Huliyurdurga, Kunigal Taluk, Tumkur District</strong>,
+                operating under the brand name{" "}
                 <strong className="text-stone-800">NIYA</strong>. We specialize
                 in Ready Mix Concrete, Concrete Solid Blocks, and Aggregates —
                 the three fundamental materials that form the backbone of modern
                 construction.
               </p>
               <p className="text-stone-500 leading-relaxed mb-5 text-base">
-                Our journey began with a simple but powerful vision: to deliver
-                construction materials of unwavering quality to Bangalore,
-                Mysore, Tumkur, and the broader Karnataka region. Today, that
-                vision drives everything we do — from how we source raw
-                materials to how we manufacture and deliver our products.
+                Our story started over 15 years ago in the aggregates business.
+                We built our foundation running{" "}
+                <strong className="text-stone-800">4 VSI Crusher plants</strong>{" "}
+                across different locations, developing deep expertise in stone
+                processing and supply chain logistics. In 2024, we expanded into
+                Ready Mix Concrete and Solid Block manufacturing — bringing the
+                same commitment to quality into these new verticals.
               </p>
               <p className="text-stone-500 leading-relaxed text-base">
-                With modern production facilities in Karnataka, a skilled
-                workforce, and an uncompromising quality culture, NIYA has
-                earned the trust of contractors, builders, developers, and
-                infrastructure companies across Bangalore and surrounding areas.
+                Today, NIYA serves contractors, builders, developers, and
+                infrastructure companies across Bangalore, Mysore, Tumkur, and
+                the broader Karnataka region — with the reliability of a
+                company that has been in the materials business for over a decade.
               </p>
             </div>
 

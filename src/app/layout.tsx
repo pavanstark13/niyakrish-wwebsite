@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     template: "%s | NIYA Bangalore",
   },
   description:
-    "NIYA by NIYAKRISH INDUSTRIES PVT LTD. — Premium Ready Mix Concrete, Concrete Solid Blocks & Aggregates supplier in Bangalore, Mysore & Tumkur, Karnataka. M10–M60 grades. Call +91 90719 57777.",
+    "NIYA by NIYAKRISH INDUSTRIES PVT LTD. — 15+ years in aggregates, now manufacturing Ready Mix Concrete, Solid Blocks & Aggregates. Headquartered in Tumkur District. Serving Bangalore, Mysore & Tumkur, Karnataka. M10–M60 grades. Call +91 90719 57777.",
   keywords: [
     "ready mix concrete Bangalore",
     "RMC supplier Bangalore",
@@ -80,26 +80,29 @@ const jsonLd = {
   name: "NIYAKRISH INDUSTRIES PVT LTD.",
   alternateName: ["NIYA", "NIYA Industries", "NIYAKRISH"],
   description:
-    "Manufacturer and supplier of Ready Mix Concrete (M10–M60), Concrete Solid Blocks, and Aggregates in Bangalore, Mysore, Tumkur and surrounding regions of Karnataka.",
+    "Manufacturer and supplier of Ready Mix Concrete (M10–M60), Concrete Solid Blocks, and Aggregates. Headquartered in Huliyurdurga, Kunigal Taluk, Tumkur District. Serving Bangalore, Mysore, Tumkur and all of Karnataka.",
   url: siteUrl,
   telephone: "+919071957777",
   email: "niyakrishindustries@gmail.com",
   priceRange: "₹₹",
   address: {
     "@type": "PostalAddress",
-    addressLocality: "Bangalore",
+    streetAddress: "Huliyurdurga",
+    addressLocality: "Kunigal",
     addressRegion: "Karnataka",
+    postalCode: "572123",
     addressCountry: "IN",
   },
   geo: {
     "@type": "GeoCoordinates",
-    latitude: 12.9716,
-    longitude: 77.5946,
+    latitude: 13.0486,
+    longitude: 77.0248,
   },
   areaServed: [
     { "@type": "City", name: "Bangalore" },
     { "@type": "City", name: "Mysore" },
     { "@type": "City", name: "Tumkur" },
+    { "@type": "City", name: "Kunigal" },
     { "@type": "State", name: "Karnataka" },
   ],
   openingHoursSpecification: [

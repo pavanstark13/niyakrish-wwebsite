@@ -135,9 +135,11 @@ export default function ContactPage() {
                       Location
                     </p>
                     <p className="text-sm text-stone-500 leading-relaxed">
-                      Bangalore, Karnataka
+                      Huliyurdurga, Kunigal Taluk
                       <br />
-                      Serving Mysore &amp; Tumkur
+                      Tumkur District, Karnataka — 572123
+                      <br />
+                      Serving Bangalore, Mysore &amp; Tumkur
                     </p>
                   </div>
                 </div>
