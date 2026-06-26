@@ -113,6 +113,8 @@ export default function Footer() {
               {[
                 { label: "About Us", href: "/about" },
                 { label: "Our Products", href: "/products" },
+                { label: "Projects", href: "/projects" },
+                { label: "Gallery", href: "/gallery" },
                 { label: "Materials Calculator", href: "/calculator" },
                 { label: "FAQ", href: "/faq" },
                 { label: "Contact Us", href: "/contact" },
@@ -173,7 +175,7 @@ export default function Footer() {
               </li>
               <li className="pt-1">
                 <span className="text-xs text-stone-600 uppercase tracking-wider">
-                  Mon–Sat · 8 AM – 6 PM
+                  24/7 · 365 Days a Year
                 </span>
               </li>
             </ul>
@@ -199,6 +201,13 @@ export default function Footer() {
               className="text-xs text-stone-600 hover:text-stone-400 transition-colors"
             >
               Contact
+            </Link>
+            <span className="text-stone-800">·</span>
+            <Link
+              href="/privacy-policy"
+              className="text-xs text-stone-600 hover:text-stone-400 transition-colors"
+            >
+              Privacy Policy
             </Link>
             <span className="text-stone-800">·</span>
             <p className="text-xs text-stone-600">

@@ -81,7 +81,7 @@ const faqs = [
       },
       {
         q: "Do you deliver on Sundays or public holidays?",
-        a: "Our standard delivery schedule is Monday to Saturday, 8:00 AM – 6:00 PM. Emergency or weekend deliveries may be arranged subject to availability — please discuss in advance.",
+        a: "We operate 24 hours a day, 7 days a week, 365 days a year — including Sundays and public holidays. Call +91 90719 57777 or WhatsApp us anytime to schedule a delivery.",
       },
     ],
   },
@@ -90,7 +90,7 @@ const faqs = [
     items: [
       {
         q: "Can I visit your plant before ordering?",
-        a: "Absolutely. We welcome site visits from clients, architects, and structural engineers. Please call or email us to schedule a visit during business hours (Mon–Sat, 9:00 AM – 5:00 PM).",
+        a: "Absolutely. We welcome site visits from clients, architects, and structural engineers. Our plant operates 24/7 — call us on +91 90719 57777 to schedule a convenient visit time.",
       },
       {
         q: "What payment terms do you offer?",
