@@ -14,12 +14,13 @@ import {
 } from "lucide-react";
 import ScrollReveal from "@/components/ScrollReveal";
 import AnimatedCounter from "@/components/AnimatedCounter";
+import QuickQuoteForm from "@/components/QuickQuoteForm";
 
 const stats = [
+  { value: "15+", label: "Years in Business" },
   { value: "500+", label: "Projects Delivered" },
-  { value: "10+", label: "Years of Excellence" },
-  { value: "99%", label: "Client Satisfaction" },
-  { value: "3", label: "Premium Products" },
+  { value: "4", label: "VSI Crusher Plants" },
+  { value: "24/7", label: "Service & Support" },
 ];
 
 const products = [
@@ -197,6 +198,34 @@ export default function Home() {
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             {stats.map((stat) => (
               <AnimatedCounter key={stat.label} value={stat.value} label={stat.label} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Certifications & Trust Strip */}
+      <section className="py-10 bg-white border-b border-stone-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <p className="text-center text-xs font-bold uppercase tracking-widest text-stone-400 mb-6">
+            Standards & Certifications
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-8">
+            {[
+              { code: "IS 456", name: "Concrete Practice Code" },
+              { code: "IS 10262", name: "Mix Design Standard" },
+              { code: "IS 2185", name: "Solid Blocks Standard" },
+              { code: "IS 383", name: "Aggregates Standard" },
+              { code: "BIS", name: "Bureau of Indian Standards" },
+            ].map((cert) => (
+              <div key={cert.code} className="flex items-center gap-2.5 px-4 py-2.5 bg-stone-50 border border-stone-200 rounded-sm">
+                <div className="w-8 h-8 bg-stone-900 rounded-sm flex items-center justify-center flex-shrink-0">
+                  <Shield size={14} className="text-amber-400" />
+                </div>
+                <div>
+                  <p className="text-xs font-black text-stone-900">{cert.code}</p>
+                  <p className="text-xs text-stone-400 leading-none">{cert.name}</p>
+                </div>
+              </div>
             ))}
           </div>
         </div>
@@ -485,6 +514,152 @@ export default function Home() {
                 </div>
               </ScrollReveal>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Coverage Area Section */}
+      <section className="py-24 bg-stone-900">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <ScrollReveal>
+            <div className="text-center mb-16">
+              <p className="text-xs font-bold tracking-widest uppercase text-amber-400 mb-3">
+                Where We Deliver
+              </p>
+              <h2 className="text-3xl lg:text-5xl font-black text-white mb-4">
+                Service Coverage
+              </h2>
+              <p className="text-stone-400 max-w-xl mx-auto text-base leading-relaxed">
+                Operating from Hasige Hobli, Tumkur District — we deliver across Bangalore, Mysore, Tumkur, and the broader Karnataka region.
+              </p>
+            </div>
+          </ScrollReveal>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
+            {[
+              {
+                city: "Bangalore",
+                desc: "Full RMC, Blocks & Aggregates delivery",
+                tag: "Primary Zone",
+                tagColor: "bg-amber-500 text-stone-900",
+                districts: ["Whitefield", "Electronic City", "Hebbal", "Kengeri", "Anekal"],
+              },
+              {
+                city: "Tumkur",
+                desc: "Home district — fastest turnaround",
+                tag: "Home Base",
+                tagColor: "bg-amber-500 text-stone-900",
+                districts: ["Tumkur City", "Kunigal", "Tiptur", "Gubbi", "Sira"],
+              },
+              {
+                city: "Mysore",
+                desc: "RMC & Aggregates delivery",
+                tag: "Active Zone",
+                tagColor: "bg-stone-700 text-stone-200",
+                districts: ["Mysore City", "Mandya", "Hunsur", "Nanjanagud"],
+              },
+              {
+                city: "Rest of Karnataka",
+                desc: "Bulk aggregate supply available",
+                tag: "Extended",
+                tagColor: "bg-stone-700 text-stone-200",
+                districts: ["Hassan", "Shivamogga", "Davangere", "Chitradurga"],
+              },
+            ].map((zone) => (
+              <ScrollReveal key={zone.city}>
+                <div className="bg-stone-800 border border-stone-700 rounded-sm p-6 h-full hover:border-amber-500/50 transition-colors">
+                  <span className={`inline-block text-xs font-bold uppercase tracking-widest px-2.5 py-1 rounded-sm mb-4 ${zone.tagColor}`}>
+                    {zone.tag}
+                  </span>
+                  <h3 className="text-white font-black text-lg mb-2">{zone.city}</h3>
+                  <p className="text-stone-400 text-sm mb-4 leading-relaxed">{zone.desc}</p>
+                  <ul className="space-y-1.5">
+                    {zone.districts.map((d) => (
+                      <li key={d} className="flex items-center gap-2 text-xs text-stone-500">
+                        <div className="w-1 h-1 rounded-full bg-amber-500 flex-shrink-0" />
+                        {d}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
+
+          <ScrollReveal>
+            <div className="bg-stone-800 border border-stone-700 rounded-sm p-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+              <div className="flex items-center gap-4">
+                <Truck size={32} className="text-amber-400 flex-shrink-0" />
+                <div>
+                  <p className="text-white font-black text-base">Not sure if we cover your area?</p>
+                  <p className="text-stone-400 text-sm">Call or WhatsApp us — we'll confirm delivery availability within minutes.</p>
+                </div>
+              </div>
+              <a
+                href="https://wa.me/919071957777?text=Hello%20NIYA!%20Do%20you%20deliver%20to%20my%20area%3F%20Please%20confirm."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-shrink-0 inline-flex items-center gap-2 px-6 py-3 bg-[#25D366] text-white font-bold text-sm rounded-sm hover:bg-[#20bb5a] transition-all uppercase tracking-wider"
+              >
+                Check Delivery Area
+                <ArrowRight size={14} />
+              </a>
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* Quick Quote Section */}
+      <section className="py-24 bg-stone-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+            <ScrollReveal direction="left">
+              <div>
+                <p className="text-xs font-bold tracking-widest uppercase text-amber-600 mb-3">
+                  Get a Quote
+                </p>
+                <h2 className="text-3xl lg:text-5xl font-black text-stone-900 mb-6 leading-tight">
+                  Need a Price?
+                  <br />
+                  <span className="text-amber-600">Ask via WhatsApp</span>
+                </h2>
+                <p className="text-stone-500 leading-relaxed mb-8 text-base">
+                  Fill in your requirement and we&apos;ll instantly open a WhatsApp message pre-filled with your details. Our team responds within minutes.
+                </p>
+
+                <div className="space-y-5">
+                  {[
+                    { step: "1", text: "Select your product and enter approximate quantity" },
+                    { step: "2", text: "Enter your site location and phone number" },
+                    { step: "3", text: "Hit 'Send via WhatsApp' — your message is pre-filled" },
+                    { step: "4", text: "We respond with pricing within minutes" },
+                  ].map((item) => (
+                    <div key={item.step} className="flex items-start gap-4">
+                      <div className="w-8 h-8 bg-stone-900 rounded-sm flex items-center justify-center flex-shrink-0">
+                        <span className="text-amber-400 font-black text-sm">{item.step}</span>
+                      </div>
+                      <p className="text-stone-600 text-sm leading-relaxed pt-1.5">{item.text}</p>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-10 p-5 bg-amber-50 border border-amber-200 rounded-sm">
+                  <p className="text-amber-800 text-sm font-semibold mb-1">Why WhatsApp?</p>
+                  <p className="text-amber-700 text-sm leading-relaxed">
+                    It&apos;s faster than email, easier to share photos or site details, and you get a direct line to our sales team — no forms, no waiting.
+                  </p>
+                </div>
+              </div>
+            </ScrollReveal>
+
+            <ScrollReveal direction="right">
+              <div className="bg-stone-900 rounded-sm p-8 border border-stone-800">
+                <p className="text-xs font-bold tracking-widest uppercase text-amber-400 mb-6">
+                  Quick Quote Form
+                </p>
+                <QuickQuoteForm />
+              </div>
+            </ScrollReveal>
           </div>
         </div>
       </section>

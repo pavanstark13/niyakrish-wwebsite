@@ -116,6 +116,8 @@ export default function Footer() {
                 { label: "Projects", href: "/projects" },
                 { label: "Gallery", href: "/gallery" },
                 { label: "Materials Calculator", href: "/calculator" },
+                { label: "Blog", href: "/blog" },
+                { label: "Specifications", href: "/specifications" },
                 { label: "FAQ", href: "/faq" },
                 { label: "Contact Us", href: "/contact" },
               ].map((item) => (
