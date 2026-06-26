@@ -147,9 +147,9 @@ export default function Footer() {
                   className="text-amber-500 mt-0.5 flex-shrink-0"
                 />
                 <span className="text-sm text-stone-400 leading-relaxed">
-                  Huliyurdurga, Kunigal Taluk
+                  Hasige Hobli, Karnataka — 572123
                   <br />
-                  Tumkur District, Karnataka — 572123
+                  (R2QJ+38) Tumkur District
                 </span>
               </li>
               <li className="flex items-center gap-3">

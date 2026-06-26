@@ -92,10 +92,10 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Google Maps placeholder — replace src with your actual embed URL from Google Maps */}
+      {/* Google Maps — NIYAKRISH INDUSTRIES factory & office, Hasige Hobli */}
       <div className="w-full h-64 bg-stone-800 relative overflow-hidden">
         <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d497698.9!2d77.5946!3d12.9716!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae1670c9b44e6d%3A0xf8dfc3e8517e4fe0!2sBengaluru%2C%20Karnataka!5e0!3m2!1sen!2sin!4v1700000000000"
+          src="https://maps.google.com/maps?q=R2QJ%2B38+Hasige+Hobli+Karnataka+572123&t=&z=16&ie=UTF8&iwloc=&output=embed"
           width="100%"
           height="100%"
           style={{ border: 0, filter: "grayscale(1) contrast(1.1)" }}
@@ -135,11 +135,11 @@ export default function ContactPage() {
                       Location
                     </p>
                     <p className="text-sm text-stone-500 leading-relaxed">
-                      Huliyurdurga, Kunigal Taluk
+                      R2QJ+38, Hasige Hobli
                       <br />
-                      Tumkur District, Karnataka — 572123
+                      Karnataka — 572123
                       <br />
-                      Serving Bangalore, Mysore &amp; Tumkur
+                      Tumkur District
                     </p>
                   </div>
                 </div>

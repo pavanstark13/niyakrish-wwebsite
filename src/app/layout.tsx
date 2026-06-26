@@ -87,16 +87,16 @@ const jsonLd = {
   priceRange: "₹₹",
   address: {
     "@type": "PostalAddress",
-    streetAddress: "Huliyurdurga",
-    addressLocality: "Kunigal",
+    streetAddress: "R2QJ+38, Hasige Hobli",
+    addressLocality: "Tumkur",
     addressRegion: "Karnataka",
     postalCode: "572123",
     addressCountry: "IN",
   },
   geo: {
     "@type": "GeoCoordinates",
-    latitude: 13.0486,
-    longitude: 77.0248,
+    latitude: 13.3379,
+    longitude: 77.1173,
   },
   areaServed: [
     { "@type": "City", name: "Bangalore" },

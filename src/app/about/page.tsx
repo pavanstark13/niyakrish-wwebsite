@@ -66,7 +66,7 @@ const timeline = [
     year: "Today",
     title: "NIYA — A Complete Construction Materials Brand",
     description:
-      "Operating from our corporate base in Huliyurdurga, Kunigal Taluk, we now serve contractors, developers, and builders across Bangalore, Mysore, Tumkur, and all of Karnataka under the NIYA brand.",
+      "Operating from our factory and office in Hasige Hobli, Tumkur District (572123), we now serve contractors, developers, and builders across Bangalore, Mysore, Tumkur, and all of Karnataka under the NIYA brand.",
   },
 ];
 
@@ -111,7 +111,7 @@ export default function AboutPage() {
               <p className="text-stone-500 leading-relaxed mb-5 text-base">
                 NIYAKRISH INDUSTRIES PVT LTD. is a manufacturer of construction
                 materials headquartered in{" "}
-                <strong className="text-stone-800">Huliyurdurga, Kunigal Taluk, Tumkur District</strong>,
+                <strong className="text-stone-800">Hasige Hobli, Tumkur District, Karnataka (572123)</strong>,
                 operating under the brand name{" "}
                 <strong className="text-stone-800">NIYA</strong>. We specialize
                 in Ready Mix Concrete, Concrete Solid Blocks, and Aggregates —
