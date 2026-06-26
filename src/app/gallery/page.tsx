@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { Camera, MessageCircle, ArrowRight, X } from "lucide-react";
+import { Camera, MessageCircle, ArrowRight, X, Play } from "lucide-react";
 import Link from "next/link";
 
 const categories = ["All", "Plant & Process", "Products", "Delivery", "Project Sites"];
@@ -13,6 +13,7 @@ interface GalleryItem {
   title: string;
   desc: string;
   src?: string;
+  type?: "image" | "video";
 }
 
 const galleryItems: GalleryItem[] = [
@@ -57,6 +58,30 @@ const galleryItems: GalleryItem[] = [
     title: "Plant Wide View",
     desc: "Wide angle view of VSI crusher plant with all conveyor belts active and aggregate production in full operation",
     src: "/gallery/crusher-wide-view.jpeg",
+  },
+  {
+    id: 19,
+    category: "Plant & Process",
+    title: "RMC Batching Plant",
+    desc: "NIYA RMC plant at Hasige Hobli — cement silos, JCB loader, concrete skip, and freshly manufactured solid blocks in the yard",
+    src: "/gallery/rmc-plant.jpeg",
+    type: "image",
+  },
+  {
+    id: 20,
+    category: "Plant & Process",
+    title: "Plant Platform — Live",
+    desc: "Live operations at the VSI crusher platform — conveyor belts in motion and aggregate production running at full capacity",
+    src: "/gallery/plant-platform.mp4",
+    type: "video",
+  },
+  {
+    id: 21,
+    category: "Plant & Process",
+    title: "Sunset at the Plant",
+    desc: "Evening view of our crusher plant operations as the sun sets over the Karnataka countryside",
+    src: "/gallery/sunset-at-plant.mp4",
+    type: "video",
   },
   {
     id: 7,
@@ -181,7 +206,21 @@ export default function GalleryPage() {
             {filtered.map((item) => (
               <button key={item.id} onClick={() => setLightbox(item.id)}
                 className="group relative aspect-square rounded-sm overflow-hidden hover:scale-[1.02] transition-all duration-300 hover:shadow-xl text-left bg-stone-800">
-                {item.src ? (
+                {item.src && item.type === "video" ? (
+                  <>
+                    <video
+                      src={item.src}
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      className="absolute inset-0 w-full h-full object-cover"
+                    />
+                    <div className="absolute top-2 right-2 w-7 h-7 bg-black/60 rounded-full flex items-center justify-center">
+                      <Play size={12} className="text-white fill-white ml-0.5" />
+                    </div>
+                  </>
+                ) : item.src ? (
                   <Image
                     src={item.src}
                     alt={item.title}
@@ -245,10 +284,17 @@ export default function GalleryPage() {
               Close
             </button>
 
-            {/* Image or placeholder */}
-            <div className="relative w-full rounded-sm overflow-hidden bg-stone-900"
-              style={{ aspectRatio: lightboxItem.src ? "16/9" : "16/9" }}>
-              {lightboxItem.src ? (
+            {/* Image / Video / Placeholder */}
+            <div className="relative w-full rounded-t-sm overflow-hidden bg-black" style={{ aspectRatio: "16/9" }}>
+              {lightboxItem.src && lightboxItem.type === "video" ? (
+                <video
+                  src={lightboxItem.src}
+                  controls
+                  autoPlay
+                  playsInline
+                  className="w-full h-full object-contain"
+                />
+              ) : lightboxItem.src ? (
                 <Image
                   src={lightboxItem.src}
                   alt={lightboxItem.title}
