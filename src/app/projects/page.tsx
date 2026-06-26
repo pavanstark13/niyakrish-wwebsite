@@ -1,12 +1,31 @@
 import Link from "next/link";
-import { ArrowRight, MapPin, Layers, Box, Mountain, CheckCircle2 } from "lucide-react";
+import { ArrowRight, MapPin, Layers, Box, Mountain, CheckCircle2, Building2 } from "lucide-react";
 import ScrollReveal from "@/components/ScrollReveal";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Projects & Clients | NIYA — Trusted by L&T, HAL, KNR Construction & More",
+  description:
+    "NIYA has supplied Ready Mix Concrete, Solid Blocks, and Aggregates to L&T, HAL, KNR Construction, and 500+ projects across Karnataka including state and central government works.",
+};
 
 const stats = [
   { value: "500+", label: "Projects Completed" },
   { value: "1,00,000+", label: "m³ Concrete Poured" },
   { value: "50,00,000+", label: "Solid Blocks Supplied" },
   { value: "10+", label: "Years of Expertise" },
+];
+
+const clients = [
+  { name: "L&T", full: "Larsen & Toubro", tag: "National", note: "India's largest construction & engineering company" },
+  { name: "HAL", full: "Hindustan Aeronautics Limited", tag: "Central Govt", note: "Central Government PSU — Aerospace & Defence" },
+  { name: "KNR Construction", full: "KNR Construction Ltd.", tag: "National", note: "Listed infra company — roads, bridges, irrigation" },
+  { name: "Karnataka Infratech", full: "Karnataka Infratech", tag: "State Govt", note: "Karnataka state government infrastructure body" },
+  { name: "Yankee Construction LLP", full: "Yankee Construction LLP", tag: "Builder", note: "Construction & real estate developer" },
+  { name: "CMK Projects", full: "CMK Projects", tag: "Builder", note: "Civil construction & project management" },
+  { name: "KGN Electricals", full: "KGN Electricals", tag: "Contractor", note: "Electrical & civil contractor" },
+  { name: "BHR Construction", full: "BHR Construction", tag: "Builder", note: "Civil construction contractor" },
+  { name: "Samanavi", full: "Samanavi", tag: "Builder", note: "Construction & infrastructure" },
 ];
 
 const projects = [
@@ -125,6 +144,65 @@ export default function ProjectsPage() {
         </div>
       </section>
 
+      {/* Clients Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <ScrollReveal>
+            <div className="text-center mb-14">
+              <p className="text-xs font-bold tracking-widest uppercase text-amber-600 mb-3">Who We Work With</p>
+              <h2 className="text-3xl lg:text-4xl font-black text-stone-900 mb-4">Trusted by Industry Leaders</h2>
+              <p className="text-stone-500 max-w-2xl mx-auto text-base leading-relaxed">
+                NIYA materials have been supplied to some of India&apos;s most reputed construction companies, national EPC contractors, and state &amp; central government projects across Karnataka.
+              </p>
+            </div>
+          </ScrollReveal>
+
+          {/* Highlight banner */}
+          <div className="bg-stone-900 rounded-sm p-6 mb-10 flex flex-col sm:flex-row items-center gap-4 text-center sm:text-left">
+            <div className="w-12 h-12 bg-amber-500 rounded-sm flex items-center justify-center flex-shrink-0 mx-auto sm:mx-0">
+              <Building2 size={22} className="text-stone-900" />
+            </div>
+            <div>
+              <p className="text-white font-black text-base mb-0.5">State & Central Government Projects</p>
+              <p className="text-stone-400 text-sm leading-relaxed">
+                Our materials have been used in Karnataka state government and central government infrastructure works — meeting the strict IS standard and quality documentation requirements of public works.
+              </p>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {clients.map((client, i) => {
+              const tagColors: Record<string, string> = {
+                "National": "bg-amber-100 text-amber-800",
+                "Central Govt": "bg-blue-100 text-blue-800",
+                "State Govt": "bg-green-100 text-green-800",
+                "Builder": "bg-stone-200 text-stone-700",
+                "Contractor": "bg-stone-200 text-stone-700",
+              };
+              return (
+                <ScrollReveal key={client.name} delay={i * 60}>
+                  <div className="bg-stone-50 border border-stone-200 rounded-sm p-6 hover:border-amber-300 hover:shadow-md transition-all duration-300">
+                    <div className="flex items-start justify-between gap-3 mb-3">
+                      <div className="w-10 h-10 bg-stone-900 rounded-sm flex items-center justify-center flex-shrink-0">
+                        <Building2 size={16} className="text-amber-400" />
+                      </div>
+                      <span className={`text-xs font-bold uppercase tracking-widest px-2.5 py-1 rounded-sm flex-shrink-0 ${tagColors[client.tag] || "bg-stone-200 text-stone-700"}`}>
+                        {client.tag}
+                      </span>
+                    </div>
+                    <h3 className="text-base font-black text-stone-900 mb-1">{client.name}</h3>
+                    {client.full !== client.name && (
+                      <p className="text-xs text-stone-500 mb-2">{client.full}</p>
+                    )}
+                    <p className="text-sm text-stone-500 leading-relaxed">{client.note}</p>
+                  </div>
+                </ScrollReveal>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
       {/* Projects grid */}
       <section className="py-20 bg-stone-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -194,11 +272,10 @@ export default function ProjectsPage() {
             ))}
           </div>
 
-          {/* Note about confidentiality */}
           <div className="mt-10 bg-amber-50 border border-amber-200 rounded-sm p-5 text-center">
             <p className="text-sm text-stone-600 leading-relaxed">
-              Client names are kept confidential upon request. NIYA has worked with leading builders, developers, and infrastructure companies across Karnataka.
-              {" "}<Link href="/contact" className="text-amber-700 font-bold hover:text-amber-600">Contact us</Link> to discuss your project requirements.
+              These are a selection of featured projects. NIYA has completed 500+ supply engagements across Karnataka for builders, developers, EPC contractors, and government works.{" "}
+              <Link href="/contact" className="text-amber-700 font-bold hover:text-amber-600">Contact us</Link> to discuss your project requirements.
             </p>
           </div>
         </div>

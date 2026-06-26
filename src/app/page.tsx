@@ -457,6 +457,39 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Trusted By Strip */}
+      <section className="py-14 bg-white border-t border-stone-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <p className="text-center text-xs font-bold uppercase tracking-widest text-stone-400 mb-8">
+            Trusted by India&apos;s Leading Builders & Contractors
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
+            {[
+              { name: "L&T", sub: "Larsen & Toubro" },
+              { name: "HAL", sub: "Hindustan Aeronautics" },
+              { name: "KNR Construction", sub: "KNR Construction Ltd." },
+              { name: "Karnataka Infratech", sub: "State Govt." },
+              { name: "Yankee Construction", sub: "LLP" },
+              { name: "CMK Projects", sub: "" },
+              { name: "KGN Electricals", sub: "" },
+              { name: "BHR Construction", sub: "" },
+              { name: "Samanavi", sub: "" },
+            ].map((c) => (
+              <div key={c.name} className="px-4 py-3 bg-stone-50 border border-stone-200 rounded-sm text-center min-w-[120px]">
+                <p className="text-sm font-black text-stone-900 leading-tight">{c.name}</p>
+                {c.sub && <p className="text-xs text-stone-400 mt-0.5">{c.sub}</p>}
+              </div>
+            ))}
+          </div>
+          <div className="text-center mt-6">
+            <Link href="/projects" className="inline-flex items-center gap-1.5 text-sm font-bold text-amber-600 hover:text-amber-700 transition-colors">
+              View All Projects & Clients
+              <ArrowRight size={13} />
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Testimonials Section */}
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
