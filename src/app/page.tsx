@@ -15,6 +15,8 @@ import {
 import ScrollReveal from "@/components/ScrollReveal";
 import AnimatedCounter from "@/components/AnimatedCounter";
 import QuickQuoteForm from "@/components/QuickQuoteForm";
+import { HeroBackdrop } from "@/components/ui/hero-backdrop";
+import { LogoTicker } from "@/components/ui/logo-ticker";
 
 const stats = [
   { value: "15+", label: "Years in Business" },
@@ -136,13 +138,8 @@ export default function Home() {
     <>
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-stone-900">
-        <div
-          className="absolute inset-0 opacity-5"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-          }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-br from-stone-900 via-stone-800 to-stone-900" />
+        <HeroBackdrop />
+        <div className="absolute inset-0 bg-gradient-to-br from-stone-900 via-stone-800 to-stone-900 opacity-80" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 text-center">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-amber-500/10 border border-amber-500/30 rounded-full mb-8">
@@ -255,7 +252,7 @@ export default function Home() {
               return (
                 <ScrollReveal key={product.id} delay={i * 120} direction="up">
                   <div
-                    className={`group relative p-8 rounded-sm border-2 ${product.cardBg} ${product.cardBorder} hover:shadow-xl transition-all duration-300 h-full`}
+                    className={`group relative p-8 rounded-sm border-2 card-lift ${product.cardBg} ${product.cardBorder} h-full`}
                   >
                     <div
                       className={`w-12 h-12 ${product.iconBg} rounded-sm flex items-center justify-center mb-6`}
@@ -457,38 +454,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Trusted By Strip */}
-      <section className="py-14 bg-white border-t border-stone-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-center text-xs font-bold uppercase tracking-widest text-stone-400 mb-8">
-            Trusted by India&apos;s Leading Builders & Contractors
-          </p>
-          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
-            {[
-              { name: "L&T", sub: "Larsen & Toubro" },
-              { name: "HAL", sub: "Hindustan Aeronautics" },
-              { name: "KNR Construction", sub: "KNR Construction Ltd." },
-              { name: "Karnataka Infratech", sub: "State Govt." },
-              { name: "Yankee Construction", sub: "LLP" },
-              { name: "CMK Projects", sub: "" },
-              { name: "KGN Electricals", sub: "" },
-              { name: "BHR Construction", sub: "" },
-              { name: "Samanavi", sub: "" },
-            ].map((c) => (
-              <div key={c.name} className="px-4 py-3 bg-stone-50 border border-stone-200 rounded-sm text-center min-w-[120px]">
-                <p className="text-sm font-black text-stone-900 leading-tight">{c.name}</p>
-                {c.sub && <p className="text-xs text-stone-400 mt-0.5">{c.sub}</p>}
-              </div>
-            ))}
-          </div>
-          <div className="text-center mt-6">
-            <Link href="/projects" className="inline-flex items-center gap-1.5 text-sm font-bold text-amber-600 hover:text-amber-700 transition-colors">
-              View All Projects & Clients
-              <ArrowRight size={13} />
-            </Link>
-          </div>
-        </div>
-      </section>
+      {/* Trusted By — animated ticker */}
+      <LogoTicker />
 
       {/* Testimonials Section */}
       <section className="py-24 bg-white">

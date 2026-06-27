@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
-import { ChevronDown, ArrowRight, MessageCircle } from "lucide-react";
+import { ArrowRight, MessageCircle } from "lucide-react";
+import { FaqAccordion } from "@/components/ui/faq-accordion";
 
 const faqs = [
   {
@@ -109,11 +109,6 @@ const faqs = [
 ];
 
 export default function FAQPage() {
-  const [openIndex, setOpenIndex] = useState<string | null>(null);
-
-  const toggle = (key: string) =>
-    setOpenIndex((prev) => (prev === key ? null : key));
-
   return (
     <>
       {/* Header */}
@@ -141,63 +136,28 @@ export default function FAQPage() {
       </section>
 
       {/* FAQ Content */}
-      <section className="py-20 bg-stone-50">
+      <section className="py-20 bg-stone-900">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="space-y-10">
             {faqs.map((section) => (
               <div key={section.category}>
-                <h2 className="text-xs font-black uppercase tracking-widest text-amber-600 mb-4 pl-1">
+                <h2 className="text-xs font-black uppercase tracking-widest text-amber-500 mb-4 pl-1">
                   {section.category}
                 </h2>
-                <div className="space-y-2">
-                  {section.items.map((item, i) => {
-                    const key = `${section.category}-${i}`;
-                    const isOpen = openIndex === key;
-                    return (
-                      <div
-                        key={key}
-                        className={`bg-white border rounded-sm transition-all duration-200 ${
-                          isOpen
-                            ? "border-amber-300 shadow-sm"
-                            : "border-stone-200"
-                        }`}
-                      >
-                        <button
-                          onClick={() => toggle(key)}
-                          className="w-full flex items-start justify-between gap-4 px-6 py-4 text-left"
-                        >
-                          <span
-                            className={`text-sm font-bold leading-relaxed ${
-                              isOpen ? "text-amber-700" : "text-stone-900"
-                            }`}
-                          >
-                            {item.q}
-                          </span>
-                          <ChevronDown
-                            size={16}
-                            className={`flex-shrink-0 mt-0.5 text-stone-400 transition-transform duration-200 ${
-                              isOpen ? "rotate-180 text-amber-500" : ""
-                            }`}
-                          />
-                        </button>
-                        {isOpen && (
-                          <div className="px-6 pb-5">
-                            <div className="w-full h-px bg-stone-100 mb-4" />
-                            <p className="text-sm text-stone-600 leading-relaxed">
-                              {item.a}
-                            </p>
-                          </div>
-                        )}
-                      </div>
-                    );
-                  })}
+                <div className="border border-stone-800 rounded-sm px-6">
+                  <FaqAccordion
+                    items={section.items.map((item) => ({
+                      question: item.q,
+                      answer: item.a,
+                    }))}
+                  />
                 </div>
               </div>
             ))}
           </div>
 
           {/* Still have questions CTA */}
-          <div className="mt-16 bg-stone-900 rounded-sm p-8 text-center">
+          <div className="mt-16 bg-stone-800 border border-stone-700 rounded-sm p-8 text-center">
             <MessageCircle size={28} className="text-amber-400 mx-auto mb-4" />
             <h3 className="text-xl font-black text-white mb-2">
               Still Have Questions?

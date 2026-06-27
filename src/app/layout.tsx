@@ -161,7 +161,7 @@ export default function RootLayout({
       </head>
       <body className="antialiased bg-stone-50 text-stone-900">
         <Navbar />
-        <main>{children}</main>
+        <main className="page-enter">{children}</main>
         <Footer />
         <WhatsAppButton />
         <BackToTop />
