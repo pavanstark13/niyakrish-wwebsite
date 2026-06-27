@@ -120,7 +120,7 @@ const jsonLd = {
       {
         "@type": "Offer",
         itemOffered: {
-          "@type": "Product",
+          "@type": "Service",
           name: "Ready Mix Concrete Bangalore",
           description: "Factory-batched RMC in grades M10 to M60, delivered across Bangalore, Mysore & Tumkur",
         },
@@ -128,7 +128,7 @@ const jsonLd = {
       {
         "@type": "Offer",
         itemOffered: {
-          "@type": "Product",
+          "@type": "Service",
           name: "Concrete Solid Blocks Bangalore",
           description: "IS 2185 certified load-bearing concrete solid blocks, supplied across Karnataka",
         },
@@ -136,7 +136,7 @@ const jsonLd = {
       {
         "@type": "Offer",
         itemOffered: {
-          "@type": "Product",
+          "@type": "Service",
           name: "Aggregates Bangalore",
           description: "IS 383 compliant crushed stone aggregates and M-sand for Bangalore & Karnataka",
         },
